@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Issues Dashboard</title>
+  </head>
+
+  <body class="bg-gray-100">
+    <nav class="bg-white shadow p-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <img src="./assets/github-logo.png" alt="Logo" class="w-8 h-8 object-contain" />
+        <h1 class="text-xl font-bold">GitHub Issues Tracker</h1>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+        <div class="flex flex-grow gap-2">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search issues..."
+            class="border p-2 rounded w-full focus:ring-2 focus:ring-purple-500 outline-none"
+          />
+          
+
+        <button
+          onclick="openNewIssueModal()"
+          class="bg-green-600 text-white px-4 py-2 rounded flex items-center justify-center gap-2 hover:bg-green-700 transition font-medium"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          <span class="whitespace-nowrap">New Issue</span>
+        </button>
+      </div>
+    </nav>
+   <!--
+    <div class="max-w-6xl mx-auto mt-6 px-4">
+      <div class="flex gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+        <button onclick="loadIssues('all')" class="tabBtn bg-purple-600 text-white px-6 py-2 rounded whitespace-nowrap">All</button>
+        <button onclick="loadIssues('open')" class="tabBtn border bg-white px-6 py-2 rounded whitespace-nowrap">Open</button>
+        <button onclick="loadIssues('closed')" class="tabBtn border bg-white px-6 py-2 rounded whitespace-nowrap">Closed</button>
+      </div>
+
+      <div
+        id="issuesContainer"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-10"
+      >
+        </div>
+    </div>
+    -->
+    <div class="max-w-6xl mx-auto mt-6 px-4">
+  <div class="flex gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+    <button onclick="loadIssues('all')" class="tabBtn bg-purple-600 text-white px-6 py-2 rounded whitespace-nowrap">All</button>
+    <button onclick="loadIssues('open')" class="tabBtn border bg-white px-6 py-2 rounded whitespace-nowrap">Open</button>
+    <button onclick="loadIssues('closed')" class="tabBtn border bg-white px-6 py-2 rounded whitespace-nowrap">Closed</button>
+  </div>
+
+  <div class="bg-white shadow-sm border border-gray-100 rounded-xl p-6 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-4">
+      <div class="bg-indigo-50 p-3 rounded-full text-indigo-600">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="m14.7 9-3.5 5"/><path d="m14.1 15-5-2"/><path d="m6.6 15 7-6"/><path d="m9.2 9 3 6"/><path d="m17.4 9-7 6"/><path d="m9.9 15 5-2"/>
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-slate-800"><span id="totalCount">50</span> Issues</h2>
+        <p class="text-slate-500 text-sm">Track and manage your project issues</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+        <span class="text-slate-700 font-medium text-sm">Open</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
+        <span class="text-slate-700 font-medium text-sm">Closed</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="issuesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-10">
+    </div>
+</div>
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4"
+    >
+      <div class="bg-white p-6 rounded-xl w-full max-w-md shadow-2xl">
+        <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
+        <p id="modalDesc" class="text-gray-600"></p>
+        <p id="modalAuthor" class="mt-4 text-sm font-semibold text-purple-600"></p>
+        
+        <button
+          onclick="closeModal()"
+          class="mt-6 w-full md:w-auto bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-medium transition"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
