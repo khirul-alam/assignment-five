@@ -1,41 +1,53 @@
 
-const searchInput = document.getElementById("searchInput");
+const loginForm = document.getElementById("loginForm");
 
+if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const user = document.getElementById("username").value;
+        const pass = document.getElementById("password").value;
+
+        if (user === "admin" && pass === "admin123") {
+            
+            localStorage.setItem("isLoggedIn", "true");
+            window.location.href = "dashboard.html"; 
+        } else {
+            alert("Wrong username or password");
+        }
+    });
+}
+
+
+const searchInput = document.getElementById("searchInput");
 if (searchInput) {
     searchInput.addEventListener("input", async (e) => {
         const query = e.target.value.toLowerCase();
-        
-        
         try {
-            
             const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
             const json = await res.json();
             const allIssues = json.data;
 
-            
             const filteredIssues = allIssues.filter(issue => 
                 issue.title.toLowerCase().includes(query) || 
                 issue.description.toLowerCase().includes(query)
             );
 
-            
             displayIssues(filteredIssues);
             
-           
             document.getElementById("currentStatusCount").innerText = filteredIssues.length;
             document.getElementById("currentStatusLabel").innerText = `Search results for "${query}"`;
-            
         } catch (error) {
             console.error("Search error:", error);
         }
     });
 }
 
+
 const container = document.getElementById("issuesContainer");
 
-
 async function loadIssues(filterType = "all") {
-    if (!container) return;
+    if (!container) return; 
+    
     container.innerHTML = `<div class="col-span-full text-center py-20 text-slate-400 font-bold">Syncing issues...</div>`;
 
     try {
@@ -43,7 +55,6 @@ async function loadIssues(filterType = "all") {
         const json = await res.json();
         const allData = json.data;
 
-       
         updateStatusCounters(allData);
 
         let filtered = allData;
@@ -64,6 +75,7 @@ async function loadIssues(filterType = "all") {
 
 
 function updateStatusCounters(allData) {
+    if(!document.getElementById("allCount")) return;
     document.getElementById("allCount").innerText = allData.length;
     document.getElementById("openCount").innerText = allData.filter(i => i.status === 'open').length;
     document.getElementById("closedCount").innerText = allData.filter(i => i.status === 'closed').length;
@@ -71,9 +83,9 @@ function updateStatusCounters(allData) {
 
 
 function displayIssues(issues) {
+    if (!container) return;
     container.innerHTML = "";
     issues.forEach(issue => {
-        
         const borderColor = issue.status === 'open' ? 'border-t-emerald-500' : 'border-t-purple-500';
         const priorityColor = issue.priority === "HIGH" ? "text-red-500" : "text-blue-500";
         
@@ -118,22 +130,17 @@ async function openModal(id) {
     pBadge.innerText = issue.priority;
     pBadge.className = `px-4 py-1 rounded-lg text-white font-black text-xs uppercase ${issue.priority === 'HIGH' ? 'bg-red-500' : 'bg-blue-500'}`;
 
-    const modal = document.getElementById("modal");
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
+    document.getElementById("modal").classList.replace("hidden", "flex");
 }
 
 function closeModal() {
-    const m = document.getElementById("modal");
-    m.classList.add("hidden");
-    m.classList.remove("flex");
+    document.getElementById("modal").classList.replace("flex", "hidden");
 }
 
 
 function updateTabUI(activeType) {
     document.querySelectorAll(".tabBtn").forEach(btn => {
-        const btnText = btn.innerText.toLowerCase();
-        if (btnText.includes(activeType)) {
+        if (btn.innerText.toLowerCase().includes(activeType)) {
             btn.className = "tabBtn bg-indigo-600 text-white px-8 py-2.5 rounded-lg font-bold shadow-md transition-all flex items-center gap-2";
         } else {
             btn.className = "tabBtn bg-white border border-slate-200 text-slate-600 px-8 py-2.5 rounded-lg font-bold hover:bg-slate-50 transition-all flex items-center gap-2";
@@ -143,16 +150,3 @@ function updateTabUI(activeType) {
 
 
 if (container) loadIssues("all");
-async function searchIssue() {
-  const text = document.getElementById("searchInput").value;
-  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
-  const data = await res.json();
-  
- 
-  if (totalCountSpan) {
-    totalCountSpan.innerText = data.data.length;
-  }
-  
-  displayIssues(data.data);
-}
-
