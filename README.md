@@ -1,128 +1,28 @@
-# 🌟 Welcome To (সহজ সরল সিম্পল) Assignment - 5
 
-# **📅 Deadline For 60 marks:** 9th March, 2026 (11:59 pm ⏱️)  
-#  📅 No Deadline For 50 marks  
-# **📅 Deadline For 30 marks:** Any time after 9th March.
-
----
-
-# Assignment-05: GitHub Issues Tracker
-
-
-### **API Endpoints:**
-###  **All Issues:** 
-  - https://phi-lab-server.vercel.app/api/v1/lab/issues 
-
-
-###  **Single Issue:**
-   - https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
-
-   - Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
-
-
-###  **Search Issue:** https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
-
-   - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
-
-
----
-
-## 📝 Main Requirements
-
-## 🎨 Design Part
-
-## Login Page
-- Create a login page containing a logo, title, and sub-title
-- Below that, there will be 2 inputs, a sign-in button, and a demo credential to sign in. Follow the Figma for this page 
-- Styled as per Figma
-
-## Main Page: 
-
-### Navbar: 
-
-- Navbar with website logo/name on the left
-- Search input and button on the right
-
-### Tab Section like Figma: 
-
-- 3 tab ( All, Open, Closed) at the top of this section.(**All**, **Open**, **Closed**)
-
-- Below the tab, there will be an icon, the issue count, some text on the left, and an open and closed marker on the right
-
-- Responsiveness: The website should be responsive for mobile devices. It is totally up to you. 
-
-
---- 
-
-
-## ⚙️ Functionalities
-- In login page, there will be default admin credentials (username, password). You need to sign in using these credentials.
-
-- Load all issues and display as per Figma
-
-- On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data 
-
-- Each card shows:
-  - Title
-  - Description
-  - Status 
-  - Author
-  - Priority
-  - Label
-  - CreatedAt
-- Clicking on an issue  card will open a modal and show all the information about that Issue. 
-
-### 🚀 Challenges
-
-
-- Show the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top. 
-
-- Loading spinner on data load
-
-- Show active button on changing category names
-
-- Implement Search Functionality and 8 meaningful github commit.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
     - 1️⃣ What is the difference between var, let, and const?
+
+    	var: A legacy declaration that creates a variable with function scope (or global scope). It is hoisted to the top of its scope and initialized as undefined, allowing it to be accessed before the declaration line. It is permissive, meaning it allows both redeclaration and reassignment.
+
+      let: A modern declaration that creates a block-scoped variable. It is hoisted to the top of its block but remains in a   Temporal Dead Zone, meaning it cannot be accessed until the code execution reaches the declaration. It allows reassignment but prohibits redeclaration within the same scope.
+
+	    const: A modern declaration that creates a block-scoped constant reference. Like let, it is subject to the Temporal Dead Zone. It forbids both redeclaration and reassignment; the binding must be initialized at the time of declaration and cannot be pointed to a new value later.
+
+
     - 2️⃣ What is the spread operator (...)?
+      The spread operator (...) is a powerful, concise syntax in JavaScript that allows an iterable (like an array, string, or object) to be expanded into places where zero or more arguments or elements are expected
+
     - 3️⃣ What is the difference between map(), filter(), and forEach()?
+
+     forEach() (The Iterative Method): A higher-order function that executes a provided callback function once for each element in an array. By definition, it is imperative—it is intended to perform side effects (like updating an external variable, logging, or DOM manipulation) rather than producing a transformed data set. It is "purely procedural" in that it expects no return value and always returns undefined.
+
+     map() (The Transformation Method): A higher-order function that creates a new array populated with the results of calling a provided function on every element in the calling array. It is declarative and mapping-based; it maintains a one-to-one correspondence between the input array and the output array, making it ideal for data transformation without mutating the original source.
+
+     filter() (The Conditional Selection Method): A higher-order function that creates a new array with all elements that pass the test implemented by the provided callback function (i.e., the callback returns a truthy value). It is a subset-producing method; it does not transform the individual elements, but rather restricts the set based on a predicate condition.
+
     - 4️⃣ What is an arrow function?
+      An arrow function (introduced in ES6) is a concise, modern syntax for writing JavaScript functions. Beyond just being a shorter way to type a function, arrow functions have distinct behavioral differences from traditional function declarations—most notably regarding the this keyword.
+
     - 5️⃣ What are template literals?
-
-
----
-
-## 🛠️ Technology Stack
-
-- **HTML**
-- **CSS** (Vanilla/Tailwind/DaisyUI)
-- **JavaScript** (Vanilla)
-
----
-
-## 🔑 Demo Credentials
-
-```text
-Username: admin
-Password: admin123
-```
-
-
----
-
-### Optional: 
- - No need to show status: Open, Closed styles On modals. 
- - No Need to show icon on labels 
- - No need to apply styles on Priority 
---- 
-
-
-## 📤 What to submit
-
-- **GitHub Repository Link:**
-- **Live Site Link:**
-
----
+      Template literals are a modern, robust way to handle strings in JavaScript, introduced in ES6. They are defined by enclosing text in backticks (`) instead of the traditional single (') or double (") quotes.
 
 
