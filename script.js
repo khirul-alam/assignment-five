@@ -41,8 +41,16 @@ if (searchInput) {
         }
     });
 }
-//--------------------------------------
-
+//---------Spinner maker-----
+const manageSpinner = (status) => {
+    if (status == true){
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("issuesContainer").classList.add("hidden");
+    } else{
+        document.getElementById("issuesContainer").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden")
+    }
+}
 
 //----------------
 const container = document.getElementById("issuesContainer");
