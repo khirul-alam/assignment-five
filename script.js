@@ -41,8 +41,10 @@ if (searchInput) {
         }
     });
 }
+//--------------------------------------
 
 
+//----------------
 const container = document.getElementById("issuesContainer");
 
 async function loadIssues(filterType = "all") {
